@@ -2,7 +2,8 @@ package simpleChessGame;
 
 import java.util.Collection;
 
-public class Pawn implements ChessPiece {
+public class Pawn extends ChessPiece {
+
     @Override
     public int getID() {
         return 0;

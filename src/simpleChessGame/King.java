@@ -3,7 +3,8 @@ package simpleChessGame;
 import java.util.Collection;
 
 
-public class King implements ChessPiece {
+public class King extends ChessPiece {
+
     @Override
     public int getID() {
         return 0;

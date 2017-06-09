@@ -3,21 +3,31 @@ package simpleChessGame;
 
 import java.util.Collection;
 
-public interface ChessPiece {
+public abstract class ChessPiece {
 
-    int getID();
+    int id;
 
-    String getName();
+    String name;
 
-    Field getCurrentField();
+    Field currentField;
 
-    boolean isAlive();
+    boolean isAlive;
 
-    boolean moveTo(Field field);
+    Color color;
 
-    Collection<Field> canMoveTo();
+    abstract int getID();
 
-    Collection<ChessPiece> isInDangerFrom();
+    abstract String getName();
 
-    Color GetColor();
+    abstract Field getCurrentField();
+
+    abstract boolean isAlive();
+
+    abstract boolean moveTo(Field field);
+
+    abstract Collection<Field> canMoveTo();
+
+    abstract Collection<ChessPiece> isInDangerFrom();
+
+    abstract Color GetColor();
 }
