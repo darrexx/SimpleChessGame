@@ -90,6 +90,7 @@ public class Field {
         return false;
     }
 
+    //Todo isEndangered only needed if King, otherwise it should be possible to move
     public boolean canPlace(Color ownColor, Color enemyColor){
         return isEndangered(enemyColor) && (getStandingChessPiece() == null || !isInUse(ownColor));
     }
