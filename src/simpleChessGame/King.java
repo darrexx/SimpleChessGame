@@ -6,6 +6,18 @@ import java.util.List;
 
 public class King extends ChessPiece {
 
+    public King(int id, String name, Field currentField, Color color){
+        this(id, name, currentField, true, color);
+    }
+
+    public King(int id, String name, Field currentField, boolean isAlive, Color color){
+        this.id = id;
+        this.name = name;
+        this.currentField = currentField;
+        this.isAlive = isAlive;
+        this.color = color;
+    }
+
     @Override
     public Collection<Field> canMoveTo() {
         List<Field> fields = new ArrayList<>();
