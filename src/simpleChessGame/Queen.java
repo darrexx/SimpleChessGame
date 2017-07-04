@@ -79,6 +79,7 @@ public class Queen extends ChessPiece {
         return  fields;
     }
 
+    @Override
     public Collection<Field> canMoveToWithoutEndangered() {
         Collection<Field> canMoveTo = canMoveTo();
         return canMoveTo.stream().filter(x -> !x.isEndangered(getEnemyColor())).collect(Collectors.toSet());

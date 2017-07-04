@@ -56,4 +56,6 @@ public abstract class ChessPiece {
     abstract Collection<Field> canMoveTo();
 
     abstract Collection<ChessPiece> isInDangerFrom();
+
+    abstract Collection<Field> canMoveToWithoutEndangered();
 }
