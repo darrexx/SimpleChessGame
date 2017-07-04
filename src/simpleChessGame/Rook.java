@@ -19,4 +19,9 @@ public class Rook extends ChessPiece {
     public Collection<ChessPiece> isInDangerFrom() {
         return null;
     }
+
+    @Override
+    Collection<Field> canMoveToWithoutEndangered() {
+        return null;
+    }
 }
