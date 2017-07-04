@@ -63,6 +63,10 @@ public class Field {
         return isInUse;
     }
 
+    public boolean isInUse(Color by){
+        return isInUse() && getStandingChessPiece().getColor() == by;
+    }
+
     public void setInUse(boolean inUse) {
         isInUse = inUse;
     }
@@ -84,5 +88,9 @@ public class Field {
             return true;
         }
         return false;
+    }
+
+    public boolean canPlace(Color ownColor, Color enemyColor){
+        return isEndangered(enemyColor) && (getStandingChessPiece() == null || !isInUse(ownColor));
     }
 }

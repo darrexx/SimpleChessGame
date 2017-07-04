@@ -41,38 +41,38 @@ public class Queen extends ChessPiece {
         short currentX = currentField.getX();
         short currentY = currentField.getY();
         for(int i = currentX+1; i<board.getFields().length; i++){
-            if(!board.getFields()[i][currentY].isInUse() && board.getFields()[i][currentY].isEndangered(color)){
+            if(!board.getFields()[i][currentY].canPlace(getColor(), getEnemyColor())){
                 fields.add(board.getFields()[i][currentY]);
             }
         }
         for(int i = currentX-1; i>=0; i--){
-            if(!board.getFields()[i][currentY].isInUse()){
+            if(!board.getFields()[i][currentY].canPlace(getColor(), getEnemyColor())){
                 fields.add(board.getFields()[i][currentY]);
             }
         }
         for(int i = currentY+1; i<board.getFields()[0].length; i++){
-            if(!board.getFields()[currentX][i].isInUse()){
+            if(!board.getFields()[currentX][i].canPlace(getColor(), getEnemyColor())){
                 fields.add(board.getFields()[currentX][i]);
             }
         }
         for(int i = currentY-1; i>=0; i--){
-            if(!board.getFields()[currentX][i].isInUse()){
+            if(!board.getFields()[currentX][i].canPlace(getColor(), getEnemyColor())){
                 fields.add(board.getFields()[currentX][i]);
             }
         }
         for(int i = 1; i+currentX<board.getFields().length;i++){
-            if(currentY+i<board.getFields()[0].length && !board.getFields()[currentX+i][currentY+i].isInUse()){
+            if(currentY+i<board.getFields()[0].length && !board.getFields()[currentX+i][currentY+i].canPlace(getColor(), getEnemyColor())){
                 fields.add(board.getFields()[currentX+i][currentY+i]);
             }
-            if(currentY-i>=0 && !board.getFields()[currentX+i][currentY-i].isInUse()){
+            if(currentY-i>=0 && !board.getFields()[currentX+i][currentY-i].canPlace(getColor(), getEnemyColor())){
                 fields.add(board.getFields()[currentX+i][currentY-i]);
             }
         }
         for(int i = -1; currentX+i>=0;i--){
-            if(currentY+i<board.getFields()[0].length && !board.getFields()[currentX+i][currentY+i].isInUse()){
+            if(currentY+i<board.getFields()[0].length && !board.getFields()[currentX+i][currentY+i].canPlace(getColor(), getEnemyColor())){
                 fields.add(board.getFields()[currentX+i][currentY+i]);
             }
-            if(currentY-i>=0 && !board.getFields()[currentX+i][currentY-i].isInUse()){
+            if(currentY-i>=0 && !board.getFields()[currentX+i][currentY-i].canPlace(getColor(), getEnemyColor())){
                 fields.add(board.getFields()[currentX+i][currentY-i]);
             }
         }
