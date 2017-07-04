@@ -1,7 +1,10 @@
 package simpleChessGame;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class ChessPiece {
 
@@ -51,11 +54,42 @@ public abstract class ChessPiece {
         }
     }
 
-    abstract boolean moveTo(Field field);
+    public boolean moveTo(Field field) {
+        if(canMoveTo().contains(field) && field.isEndangered(getEnemyColor()) && !field.isInUse(getColor())){
+            currentField.setInUse(false);
+            currentField.setStandingChessPiece(null);
+            setCurrentField(field);
+            if(field.isInUse()) {
+                field.getStandingChessPiece().setAlive(false);
+                field.getStandingChessPiece().setCurrentField(null);
+            }
+            currentField.setStandingChessPiece(this);
+            currentField.setInUse(true);
+            return true;
+        }
+        return false;
+    }
 
     abstract Collection<Field> canMoveTo();
 
-    abstract Collection<ChessPiece> isInDangerFrom();
+    public Collection<ChessPiece> isInDangerFrom() {
+        if(currentField.isEndangered(getEnemyColor())) {
+            Player enemyPlayer = currentField.getBoard().getPlayer(getEnemyColor());
+            List<ChessPiece> inDangerFrom = new ArrayList<>();
+            for (ChessPiece chessPiece : enemyPlayer.getChessPieces()) {
+                if (chessPiece.canMoveTo().contains(currentField)) {
+                    inDangerFrom.add(chessPiece);
+                }
+            }
+            return inDangerFrom;
+        }
+        else{
+            return null;
+        }
+    }
 
-    abstract Collection<Field> canMoveToWithoutEndangered();
+    public Collection<Field> canMoveToWithoutEndangered() {
+        Collection<Field> canMoveTo = canMoveTo();
+        return canMoveTo.stream().filter(x -> !x.isEndangered(getEnemyColor())).collect(Collectors.toSet());
+    }
 }
