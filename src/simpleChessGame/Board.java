@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class Board {
 
-    private Collection<Field> fields;
+    private Field[][] fields;
 
     private Collection<Player> players;
 
@@ -13,18 +13,27 @@ public class Board {
 
     private boolean isGameOver;
 
-    public Board(Collection<Field> fields, Collection<Player> players, Collection<ChessPiece> chessPieces){
+    public Board(Field[][] fields, Collection<Player> players, Collection<ChessPiece> chessPieces){
         this.fields = fields;
         this.players = players;
         this.chessPieces = chessPieces;
     }
 
-    public Collection<Field> getFields() {
+    public Field[][] getFields() {
         return fields;
     }
 
     public Collection<Player> getPlayers() {
         return players;
+    }
+
+    public Player getPlayer(Color color){
+        for(Player player : players){
+            if(player.getColor() == color){
+                return player;
+            }
+        }
+        return null;
     }
 
     public Collection<ChessPiece> getChessPieces() {
