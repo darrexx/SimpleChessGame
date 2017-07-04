@@ -27,39 +27,67 @@ public class Queen extends ChessPiece {
         short currentX = currentField.getX();
         short currentY = currentField.getY();
         for (int i = currentX + 1; i < board.getFields().length; i++) {
-            if (!board.getFields()[i][currentY].canPlace(getColor(), getEnemyColor())) {
+            if (board.getFields()[i][currentY].canPlace(getColor(), getEnemyColor())) {
                 fields.add(board.getFields()[i][currentY]);
+            }
+            if(board.getFields()[i][currentY].isInUse()){
+                break;
             }
         }
         for (int i = currentX - 1; i >= 0; i--) {
-            if (!board.getFields()[i][currentY].canPlace(getColor(), getEnemyColor())) {
+            if (board.getFields()[i][currentY].canPlace(getColor(), getEnemyColor())) {
                 fields.add(board.getFields()[i][currentY]);
+            }
+            if(board.getFields()[i][currentY].isInUse()){
+                break;
             }
         }
         for (int i = currentY + 1; i < board.getFields()[0].length; i++) {
-            if (!board.getFields()[currentX][i].canPlace(getColor(), getEnemyColor())) {
+            if (board.getFields()[currentX][i].canPlace(getColor(), getEnemyColor())) {
                 fields.add(board.getFields()[currentX][i]);
+            }
+            if(board.getFields()[currentX][i].isInUse()){
+                break;
             }
         }
         for (int i = currentY - 1; i >= 0; i--) {
-            if (!board.getFields()[currentX][i].canPlace(getColor(), getEnemyColor())) {
+            if (board.getFields()[currentX][i].canPlace(getColor(), getEnemyColor())) {
                 fields.add(board.getFields()[currentX][i]);
             }
+            if(board.getFields()[currentX][i].isInUse()){
+                break;
+            }
         }
+        boolean canMoveUp = true;
+        boolean canMoveDown = true;
         for (int i = 1; i + currentX < board.getFields().length; i++) {
-            if (currentY + i < board.getFields()[0].length && !board.getFields()[currentX + i][currentY + i].canPlace(getColor(), getEnemyColor())) {
+            if (currentY + i < board.getFields()[0].length && board.getFields()[currentX + i][currentY + i].canPlace(getColor(), getEnemyColor()) && canMoveUp) {
                 fields.add(board.getFields()[currentX + i][currentY + i]);
             }
-            if (currentY - i >= 0 && !board.getFields()[currentX + i][currentY - i].canPlace(getColor(), getEnemyColor())) {
+            if(board.getFields()[currentX + i][currentY + i].isInUse()){
+                canMoveUp = false;
+            }
+            if (currentY - i >= 0 && board.getFields()[currentX + i][currentY - i].canPlace(getColor(), getEnemyColor()) && canMoveDown) {
                 fields.add(board.getFields()[currentX + i][currentY - i]);
+            }
+            if(board.getFields()[currentX + i][currentY - i].isInUse()){
+                canMoveDown = false;
             }
         }
+        canMoveUp = true;
+        canMoveDown = true;
         for (int i = -1; currentX + i >= 0; i--) {
-            if (currentY + i < board.getFields()[0].length && !board.getFields()[currentX + i][currentY + i].canPlace(getColor(), getEnemyColor())) {
+            if (currentY + i < board.getFields()[0].length && board.getFields()[currentX + i][currentY + i].canPlace(getColor(), getEnemyColor()) && canMoveUp) {
                 fields.add(board.getFields()[currentX + i][currentY + i]);
             }
-            if (currentY - i >= 0 && !board.getFields()[currentX + i][currentY - i].canPlace(getColor(), getEnemyColor())) {
+            if(board.getFields()[currentX + i][currentY + i].isInUse()){
+                canMoveUp = false;
+            }
+            if (currentY - i >= 0 && board.getFields()[currentX + i][currentY - i].canPlace(getColor(), getEnemyColor()) && canMoveDown) {
                 fields.add(board.getFields()[currentX + i][currentY - i]);
+            }
+            if(board.getFields()[currentX + i][currentY - i].isInUse()){
+                canMoveDown = false;
             }
         }
         return fields;
