@@ -68,7 +68,7 @@ public class Queen extends ChessPiece {
                 fields.add(board.getFields()[currentX+i][currentY-i]);
             }
         }
-        for(int i = -1; i>=0;i--){
+        for(int i = -1; currentX+i>=0;i--){
             if(currentY+i<board.getFields()[0].length && !board.getFields()[currentX+i][currentY+i].isInUse()){
                 fields.add(board.getFields()[currentX+i][currentY+i]);
             }
@@ -88,7 +88,7 @@ public class Queen extends ChessPiece {
     public Collection<ChessPiece> isInDangerFrom() {
         if(currentField.isEndangered(getEnemyColor())) {
             Player enemyPlayer = currentField.getBoard().getPlayer(getEnemyColor());
-            List inDangerFrom = new ArrayList<ChessPiece>();
+            List<ChessPiece> inDangerFrom = new ArrayList<>();
             for (ChessPiece chessPiece : enemyPlayer.getChessPieces()) {
                 if (chessPiece.canMoveTo().contains(currentField)) {
                     inDangerFrom.add(chessPiece);
