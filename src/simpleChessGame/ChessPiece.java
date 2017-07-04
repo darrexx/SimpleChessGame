@@ -15,19 +15,37 @@ public abstract class ChessPiece {
 
     Color color;
 
-    abstract int getID();
+    int getID(){
+        return id;
+    }
 
-    abstract String getName();
+    String getName(){
+         return name;
+    }
 
-    abstract Field getCurrentField();
+    Field getCurrentField(){
+        return currentField;
+    }
 
-    abstract boolean isAlive();
+    boolean isAlive(){
+        return isAlive;
+    }
+
+    Color getColor(){
+        return color;
+    }
+
+    protected Color getEnemyColor(){
+        if(color == Color.BLACK){
+            return Color.WHITE;
+        }else{
+            return Color.BLACK;
+        }
+    }
 
     abstract boolean moveTo(Field field);
 
     abstract Collection<Field> canMoveTo();
 
     abstract Collection<ChessPiece> isInDangerFrom();
-
-    abstract Color GetColor();
 }
