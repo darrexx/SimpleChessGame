@@ -2,6 +2,7 @@ package simpleChessGame;
 
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class Player {
 
@@ -22,11 +23,11 @@ public class Player {
     }
 
     public Collection<ChessPiece> getAliveChessPieces(){
-        return null;
+        return getChessPieces().stream().filter(x -> x.isAlive()).collect(Collectors.toList());
     }
 
     public Collection<ChessPiece> getDeadChessPieces(){
-        return null;
+        return getChessPieces().stream().filter(x -> !x.isAlive()).collect(Collectors.toList());
     }
 
     public String getName() {

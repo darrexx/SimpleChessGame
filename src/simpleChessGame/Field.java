@@ -94,4 +94,8 @@ public class Field {
     public boolean canPlace(Color ownColor, Color enemyColor){
         return isEndangered(enemyColor) && (getStandingChessPiece() == null || !isInUse(ownColor));
     }
+
+    public String toString(){
+        return "";
+    }
 }

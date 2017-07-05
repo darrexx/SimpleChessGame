@@ -18,6 +18,7 @@ public class King extends ChessPiece {
         this.color = color;
     }
 
+    //Todo Implement Castling(https://en.wikipedia.org/wiki/Castling)
     @Override
     public Collection<Field> canMoveTo() {
         List<Field> fields = new ArrayList<>();
